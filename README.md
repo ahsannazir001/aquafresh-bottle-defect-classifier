@@ -80,3 +80,62 @@ The trained baseline checkpoint is:
 
 ```text
 models/baseline_resnet18.pt
+---
+
+## Task 2 — Data Augmentation and Hyperparameter Tuning
+
+### Data Augmentation
+
+The training pipeline applies:
+
+- Resize to 224 × 224 pixels.
+- Random rotation up to 10 degrees.
+- Random horizontal flip with probability 0.5.
+- Random brightness adjustment using ColorJitter.
+- Tensor conversion and ImageNet normalization.
+
+Validation and test images use resizing and normalization without random augmentation.
+
+### Hyperparameter Sweep
+
+Four configurations were evaluated for 10 epochs each.
+
+| Learning Rate | Batch Size | Best Epoch | Validation Accuracy | Validation Loss |
+|---:|---:|---:|---:|---:|
+| 0.0001 | 4 | 6 | 100.00% | 0.01021 |
+| 0.0001 | 8 | 6 | 100.00% | 0.00307 |
+| 0.0003 | 4 | 10 | 100.00% | 0.00162 |
+| 0.0003 | 8 | 10 | 100.00% | 0.04891 |
+
+Selected configuration: learning rate 0.0003, batch size 4.
+
+### Final Test Results
+
+- Test images: 8
+- Correct predictions: 8/8
+- Test accuracy: 100.00%
+- Test loss: 0.004667
+
+The baseline and tuned models both achieved 100% accuracy on this eight-image test set. Therefore, a 2-percentage-point improvement over the baseline has not been demonstrated. A larger independent test set is needed to evaluate generalization reliably.
+
+### Reports
+
+- `reports/training_history.csv`
+- `reports/experiment_results.csv`
+- `reports/training_curves.png`
+- `reports/hyperparameter_comparison.png`
+- `reports/final_test_result.txt`
+
+### Saved Models
+
+- `models/augmented_resnet18.pt`
+- `models/best_tuned_resnet18.pt`
+- Four hyperparameter-sweep checkpoints in `models/`
+
+### Reproducing Task 2
+
+Run these commands from the project root with the virtual environment activated:
+
+```bash
+python src/train_task2.py
+python src/hyperparameter_sweep.py

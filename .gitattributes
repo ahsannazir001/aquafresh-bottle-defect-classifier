@@ -1,0 +1,6 @@
+models/augmented_resnet18.pt filter=lfs diff=lfs merge=lfs -text
+models/best_tuned_resnet18.pt filter=lfs diff=lfs merge=lfs -text
+models/sweep_lr_0.0001_bs_4.pt filter=lfs diff=lfs merge=lfs -text
+models/sweep_lr_0.0001_bs_8.pt filter=lfs diff=lfs merge=lfs -text
+models/sweep_lr_0.0003_bs_4.pt filter=lfs diff=lfs merge=lfs -text
+models/sweep_lr_0.0003_bs_8.pt filter=lfs diff=lfs merge=lfs -text

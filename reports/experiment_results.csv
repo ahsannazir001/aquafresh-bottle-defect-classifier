@@ -1,0 +1,5 @@
+experiment,learning_rate,batch_size,best_epoch,best_val_accuracy,best_val_loss,checkpoint,test_loss,test_accuracy
+1,0.0001,4,6,1.0,0.010208660503849387,models/sweep_lr_0.0001_bs_4.pt,,
+2,0.0001,8,6,1.0,0.0030673088040202856,models/sweep_lr_0.0001_bs_8.pt,,
+3,0.0003,4,10,1.0,0.0016216198564507067,models/sweep_lr_0.0003_bs_4.pt,0.004666807275498286,1.0
+4,0.0003,8,10,1.0,0.048907358199357986,models/sweep_lr_0.0003_bs_8.pt,,

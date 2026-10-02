@@ -1,0 +1,11 @@
+Selected configuration based on validation metrics
+Learning rate: 0.0003
+Batch size: 4
+Best epoch: 10
+Validation accuracy: 1.0
+Validation loss: 0.0016216198564507067
+Test images: 8
+Correct predictions: 8
+Test accuracy: 1.0000 (100.00%)
+Test loss: 0.004667
+Caution: the test set is small; accuracy may not generalize to real-world images.
