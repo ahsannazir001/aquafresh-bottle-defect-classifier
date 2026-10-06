@@ -1,0 +1,9 @@
+image,true_label,predicted_label,correct
+/mnt/c/Users/ahsan/Desktop/Ezline tech/aquafresh-bottle-defect-classifier/data/processed/test/sealstable/IMG_1811_object1.jpg,sealstable,sealstable,True
+/mnt/c/Users/ahsan/Desktop/Ezline tech/aquafresh-bottle-defect-classifier/data/processed/test/sealstable/IMG_1814_object1.jpg,sealstable,sealstable,True
+/mnt/c/Users/ahsan/Desktop/Ezline tech/aquafresh-bottle-defect-classifier/data/processed/test/sealstable/IMG_1819_object1.jpg,sealstable,sealstable,True
+/mnt/c/Users/ahsan/Desktop/Ezline tech/aquafresh-bottle-defect-classifier/data/processed/test/sealstable/IMG_1833_object1.jpg,sealstable,sealstable,True
+/mnt/c/Users/ahsan/Desktop/Ezline tech/aquafresh-bottle-defect-classifier/data/processed/test/sealstable/IMG_1837_object1.jpg,sealstable,sealstable,True
+/mnt/c/Users/ahsan/Desktop/Ezline tech/aquafresh-bottle-defect-classifier/data/processed/test/unsealed/IMG_1846_object1.jpg,unsealed,unsealed,True
+/mnt/c/Users/ahsan/Desktop/Ezline tech/aquafresh-bottle-defect-classifier/data/processed/test/unsealed/IMG_1875_object1.jpg,unsealed,unsealed,True
+/mnt/c/Users/ahsan/Desktop/Ezline tech/aquafresh-bottle-defect-classifier/data/processed/test/unsealed/IMG_1885_object1.jpg,unsealed,unsealed,True
