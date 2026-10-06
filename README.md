@@ -139,3 +139,14 @@ Run these commands from the project root with the virtual environment activated:
 ```bash
 python src/train_task2.py
 python src/hyperparameter_sweep.py
+
+## Task 3 — Error Analysis and Reporting
+
+Task 3 evaluates the best tuned ResNet18 model on the held-out test set and performs error analysis using a confusion matrix, prediction records, and misclassified-sample review.
+
+### Error Analysis Implementation
+
+The error-analysis pipeline is implemented in:
+
+```text
+src/error_analysis.py
