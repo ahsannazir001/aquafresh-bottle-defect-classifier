@@ -150,3 +150,126 @@ The error-analysis pipeline is implemented in:
 
 ```text
 src/error_analysis.py
+
+## Task 4 — Inference API and Deployment
+
+Task 4 packages the trained ResNet18 classifier as a FastAPI inference service, containerizes the application with Docker, and deploys it to Render.
+
+### Live Deployment
+
+- **Platform:** Render
+- **Application:** FastAPI
+- **Model:** `best_tuned_resnet18.pt`
+- **Deployment status:** Live
+
+**Live API:** https://aquafresh-bottle-defect-classifier.onrender.com
+
+### API Endpoints
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/` | API root endpoint |
+| GET | `/health` | Check API and model status |
+| POST | `/predict` | Upload an image and receive a classification prediction |
+| GET | `/docs` | Interactive Swagger API documentation |
+
+### Health Check
+
+Request:
+
+```http
+GET /health
+```
+
+Verified response:
+
+```json
+{
+  "status": "healthy",
+  "model": "best_tuned_resnet18.pt"
+}
+```
+
+### Image Prediction
+
+The `/predict` endpoint accepts an image using `multipart/form-data` and returns a JSON response containing the filename, predicted class, confidence, and class probabilities.
+
+**Example request using cURL:**
+
+```bash
+curl -X POST \
+  "https://aquafresh-bottle-defect-classifier.onrender.com/predict" \
+  -H "accept: application/json" \
+  -F "file=@IMG_1889.jpg;type=image/jpeg"
+```
+
+Replace `IMG_1889.jpg` with the path to your own test image.
+
+**Verified prediction response:**
+
+```json
+{
+  "filename": "IMG_1889.jpg",
+  "prediction": "sealstable",
+  "confidence": 0.8373,
+  "probabilities": {
+    "sealstable": 0.8373,
+    "unsealed": 0.1627
+  }
+}
+```
+
+The live endpoint returned HTTP `200` for this test request.
+
+### Running Locally
+
+Create and activate a Python virtual environment, then install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the API from the project root:
+
+```bash
+uvicorn api.main:app --host 0.0.0.0 --port 8000
+```
+
+Open the following URLs:
+
+- API health: http://localhost:8000/health
+- Swagger documentation: http://localhost:8000/docs
+
+### Running with Docker
+
+Build the Docker image:
+
+```bash
+docker build -t aquafresh-api:task4 .
+```
+
+Run the container:
+
+```bash
+docker run --rm -p 8000:8000 --name aquafresh-api-task4 aquafresh-api:task4
+```
+
+Then open http://localhost:8000/docs to test the API.
+
+### Limitations
+
+- The classifier predicts one of the two trained classes: `sealstable` or `unsealed`.
+- It has not been established that the model detects every type of bottle defect, such as cracks, incorrect labels, or empty bottles.
+- The test dataset contains only eight images, so its measured test accuracy should not be interpreted as a reliable estimate of real-world performance.
+- Prediction confidence is a model output and does not guarantee that a prediction is correct.
+- The free Render instance may sleep after inactivity, causing a delay on the first request.
+
+### Deployment Verification
+
+The following checks have been completed:
+
+- FastAPI service deployed successfully on Render.
+- `/health` returned the expected healthy status and model name.
+- `/predict` accepted an uploaded image and returned a JSON prediction.
+- The live prediction request returned HTTP `200`.
+- Docker image built and the container was tested locally.
